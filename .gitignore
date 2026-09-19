@@ -1,0 +1,26 @@
+# —— 构建产物与生成代码（体积大，且可能夹带本机信息）——
+/app/.dart_tool/
+/app/build/
+/app/.flutter-plugins
+/app/.flutter-plugins-dependencies
+/app/.packages
+/app/windows/flutter/ephemeral/
+
+# —— 登录态与凭据：任何情况下都不得进入仓库 ——
+# 央视频登录态保存在 %LOCALAPPDATA%\YTV\WebView2（项目目录之外），
+# 这里做防御性排除，避免误拷入项目后被提交。
+**/WebView2/
+**/EBWebView/
+*.cookie
+*.cookies
+.env
+.env.*
+
+# —— 编辑器与系统文件 ——
+.idea/
+*.iml
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store
