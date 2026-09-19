@@ -36,5 +36,9 @@ target_link_libraries(${BINARY_NAME} PRIVATE flutter flutter_wrapper_app)
 target_link_libraries(${BINARY_NAME} PRIVATE "dwmapi.lib")
 target_include_directories(${BINARY_NAME} PRIVATE "${CMAKE_SOURCE_DIR}")
 
+# 源码以 UTF-8 保存，含中文注释。默认代码页是 936，MSVC 会报 C4819 警告，
+# 而本项目启用了 /WX（警告视为错误），因此必须显式告知编译器源码编码。
+target_compile_options(${BINARY_NAME} PRIVATE "/utf-8")
+
 # Run the Flutter tool portions of the build. This must not be removed.
 add_dependencies(${BINARY_NAME} flutter_assemble)
