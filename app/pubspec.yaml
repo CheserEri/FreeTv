@@ -1,5 +1,5 @@
 name: ytv
-description: "A new Flutter project."
+description: "YTV —— 只在官方页面内承载播放的央视节目客户端，自用，不对外分发。"
 publish_to: 'none'
 version: 0.1.0+1
 

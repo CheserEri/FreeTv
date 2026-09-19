@@ -21,23 +21,34 @@ cd app
 flutter analyze
 flutter test
 flutter run -d windows
+flutter build windows --release   # 产物见 build\windows\x64\runner\Release\
 ```
 
-当前环境限制：本机已装 Flutter 3.44.6（stable，Dart 3.12.2），但**未安装 Visual Studio 的「使用 C++ 的桌面开发」工作负载**，因此 `flutter run -d windows` 暂不可用。开发期可用 `flutter build web` / `flutter run -d chrome` 做界面验证，但 Web 结论不能替代 Windows 真机验收。
+Windows 构建需要 Visual Studio 的「使用 C++ 的桌面开发」工作负载，本机已验证可完成 release 构建。运行还需要 WebView2 Runtime（Win11 及较新 Win10 随 Edge 预装）。
+
+## 分发边界：只提供源码，不提供安装包
+
+**本项目保持开源，但不提供预编译安装包或任何二进制分发物。**
+
+原因见 [实施路线与验收](docs/08-项目管理/实施路线与验收-v0.1.md) 的「分发边界」一节：官方协议明确禁止第三方工具接入及向公众传播，因此不以本项目名义对外分发可执行文件。
+
+想自己用的话，按上面的命令自行构建即可。构建产物请勿公开分发。
 
 ## 当前进度
 
-Phase 1A 工程与视觉骨架已完成：主题令牌、路由、种子频道目录、首页/频道/收藏/设置/播放壳层页面、统一焦点表现、Esc 全局返回，以及 12 项自动化测试。
+Phase 1A 工程与视觉骨架、Phase 1B 官方 WebView 承载 POC 均已完成：主题令牌、路由、内置频道目录、首页/频道/收藏/设置/播放壳层页面、统一焦点表现、Esc 全局返回、导航级白名单与事后检测，以及 34 项自动化测试。
 
-尚未开始：Phase 1B 官方 WebView 承载 POC（含 `OfficialWebPlaybackGateway`）、Phase 1C SQLite 本地闭环。
+尚未开始：Phase 1C SQLite 本地闭环、节目单 EPG（已决定暂不做）。
 
 ## 当前决策
 
 | 决策 | 结论 |
 |---|---|
 | MVP 播放 | Flutter WebView 承载官方电视页 |
+| 单频道定位 | 打开官方电视页的 `?pid=` 直达地址，不在页面内二次点击 |
 | 自定义 UI | 首页、频道导航、收藏、历史、设置由 YTV 实现 |
 | 登录 | 仅通过官方页面完成；YTV 不读取、解析或上传凭据 |
 | 服务端 | P0 不部署云端；以本地 Repository / Adapter 契约开发 |
 | 原生播放器 | 仅在取得官方允许的稳定接入方式后另立 POC |
+| 分发 | 保持开源，只提供源码，不提供安装包与二进制产物 |
 
