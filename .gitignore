@@ -6,6 +6,10 @@
 /app/.packages
 /app/windows/flutter/ephemeral/
 
+# 安装包产物作为 GitHub Release 资产分发，不进版本库：
+# 二进制进入 git 历史会永久增大仓库体积，且无法回退。
+/app/windows/installer/Output/
+
 # —— 登录态与凭据：任何情况下都不得进入仓库 ——
 # 央视频登录态保存在 %LOCALAPPDATA%\YTV\WebView2（项目目录之外），
 # 这里做防御性排除，避免误拷入项目后被提交。

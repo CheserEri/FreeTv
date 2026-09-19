@@ -26,13 +26,20 @@ flutter build windows --release   # 产物见 build\windows\x64\runner\Release\
 
 Windows 构建需要 Visual Studio 的「使用 C++ 的桌面开发」工作负载，本机已验证可完成 release 构建。运行还需要 WebView2 Runtime（Win11 及较新 Win10 随 Edge 预装）。
 
-## 分发边界：只提供源码，不提供安装包
+## 分发边界：开源，并在 Releases 提供安装包
 
-**本项目保持开源，但不提供预编译安装包或任何二进制分发物。**
+**本项目保持开源，同时在 GitHub Releases 提供 Windows 安装包 `YTV-Setup.exe`。**
 
-原因见 [实施路线与验收](docs/08-项目管理/实施路线与验收-v0.1.md) 的「分发边界」一节：官方协议明确禁止第三方工具接入及向公众传播，因此不以本项目名义对外分发可执行文件。
+安装包由本仓库的 [windows/installer/ytv.iss](app/windows/installer/ytv.iss) 构建，可自行复现：
 
-想自己用的话，按上面的命令自行构建即可。构建产物请勿公开分发。
+```powershell
+flutter build windows --release
+& "ISCC.exe" windows\installer\ytv.iss   # 产物见 windows\installer\Output\
+```
+
+关于官方协议（第八条、第九条）的风险判断，以及 2026-09-19 从「只提供源码」修订为「公开分发安装包」的决策记录，见 [实施路线与验收](docs/08-项目管理/实施路线与验收-v0.1.md) 的「分发边界」一节。**该节同时列明了仍须维持的红线，请先阅读再分发。**
+
+想自己构建的话，按上面的命令即可。
 
 ## 当前进度
 
@@ -50,5 +57,5 @@ Phase 1A 工程与视觉骨架、Phase 1B 官方 WebView 承载 POC 均已完成
 | 登录 | 仅通过官方页面完成；YTV 不读取、解析或上传凭据 |
 | 服务端 | P0 不部署云端；以本地 Repository / Adapter 契约开发 |
 | 原生播放器 | 仅在取得官方允许的稳定接入方式后另立 POC |
-| 分发 | 保持开源，只提供源码，不提供安装包与二进制产物 |
+| 分发 | 开源；Releases 提供安装包，安装包脚本可复现 |
 
