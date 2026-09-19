@@ -19,9 +19,11 @@ void main() {
     });
 
     test('拒绝非 HTTPS 协议', () {
+      // 用例中的 `placeholder-user` 是占位用户名，**不代表任何真实用户**，
+      // 只用来证明 `file:` 协议会被拒绝。换到别的机器上部署时无需改动。
       final cases = <String, UrlPolicyReason>{
         'http://www.yangshipin.cn/tv/home': UrlPolicyReason.unsupportedScheme,
-        'file:///C:/Users/chese/secrets.html':
+        'file:///C:/Users/placeholder-user/secrets.html':
             UrlPolicyReason.unsupportedScheme,
         'javascript:alert(document.cookie)': UrlPolicyReason.unsupportedScheme,
         'data:text/html;base64,PHNjcmlwdD4=': UrlPolicyReason.unsupportedScheme,
