@@ -15,7 +15,7 @@ void openPlayer(BuildContext context, Channel channel) {
   Navigator.of(context).pushNamed(Routes.player, arguments: channel);
 }
 
-/// 播放页：由官方页面在 WebView 内完成播放，YTV 不接管媒体链路。
+/// 播放页：由官方页面在 WebView 内完成播放，FreeTv 不接管媒体链路。
 ///
 /// 页面只消费 [PlaybackState]，不接触网页内容、Cookie 或媒体地址；
 /// 关闭页面即释放 WebView。
@@ -95,7 +95,7 @@ class _PlayerPageState extends State<PlayerPage> {
       return _NoticePane(
         icon: Icons.open_in_new,
         title: '当前平台未启用内嵌官方页面',
-        detail: '请在官方电视页观看。YTV 不代理、不转发任何媒体内容。',
+        detail: '请在官方电视页观看。FreeTv 不代理、不转发任何媒体内容。',
         officialAddress: widget.channel.officialPageUrl,
       );
     }
@@ -127,7 +127,7 @@ class _PlayerPageState extends State<PlayerPage> {
         return const _NoticePane(
           icon: Icons.hourglass_empty,
           title: '正在准备官方页面',
-          detail: 'YTV 只在官方页面内打开频道，不读取网页内容。',
+          detail: 'FreeTv 只在官方页面内打开频道，不读取网页内容。',
         );
       case PlaybackLoading():
         return const _NoticePane(
@@ -140,7 +140,7 @@ class _PlayerPageState extends State<PlayerPage> {
         return const _NoticePane(
           icon: Icons.lock_outline,
           title: '需要在官方页面登录',
-          detail: '请在官方页面内自行完成登录，YTV 不读取、不代替登录。',
+          detail: '请在官方页面内自行完成登录，FreeTv 不读取、不代替登录。',
         );
       case PlaybackRestricted(:final message):
         return _NoticePane(

@@ -34,7 +34,7 @@ class SideNav extends StatelessWidget {
                 bottom: YtvSpacing.lg,
               ),
               child: Text(
-                'YTV',
+                'FreeTv',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,

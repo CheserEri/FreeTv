@@ -1,5 +1,5 @@
 name: ytv
-description: "YTV —— 只在官方页面内承载播放的电视节目客户端。"
+description: "FreeTv —— 只在官方页面内承载播放的电视节目客户端。"
 publish_to: 'none'
 version: 0.1.0+1
 

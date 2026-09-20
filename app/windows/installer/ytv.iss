@@ -1,4 +1,4 @@
-; YTV 安装包脚本（Inno Setup 6）
+; FreeTv 安装包脚本（Inno Setup 6）
 ;
 ; 用途：把 flutter build windows --release 的产物打包成单文件安装程序，
 ; 通过 GitHub Releases 公开分发。分发边界的决策记录与风险说明见
@@ -7,14 +7,14 @@
 ; 编译：
 ;   & "C:\Users\chese\AppData\Local\Programs\Inno Setup 6\ISCC.exe" ytv.iss
 ; 产物：
-;   windows\installer\Output\YTV-Setup.exe
+;   windows\installer\Output\FreeTv-Setup.exe
 ;
 ; 前提：先执行过 flutter build windows --release。
 
-#define AppName "YTV"
+#define AppName "FreeTv"
 #define AppVersion "0.1.0"
-#define AppPublisher "YTV"
-#define AppExeName "ytv.exe"
+#define AppPublisher "FreeTv"
+#define AppExeName "FreeTv.exe"
 #define ReleaseDir "..\..\build\windows\x64\runner\Release"
 
 [Setup]
@@ -25,11 +25,11 @@ AppVersion={#AppVersion}
 AppPublisher={#AppPublisher}
 ; 公开分发须用标准安装位置：本机自用时写的是 D:\SoftWare\YTV，
 ; 但多数目标机器没有 D 盘，那样会安装失败。安装向导仍允许改路径。
-DefaultDirName={autopf}\YTV
+DefaultDirName={autopf}\FreeTv
 DisableDirPage=no
 DisableProgramGroupPage=yes
 OutputDir=Output
-OutputBaseFilename=YTV-Setup
+OutputBaseFilename=FreeTv-Setup
 Compression=lzma2/max
 SolidCompression=yes
 WizardStyle=modern
@@ -38,7 +38,7 @@ SetupIconFile=..\runner\resources\app_icon.ico
 UninstallDisplayIcon={app}\{#AppExeName}
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
-; 覆盖前自动关闭正在运行的 YTV，避免文件占用导致安装失败。
+; 覆盖前自动关闭正在运行的 FreeTv，避免文件占用导致安装失败。
 CloseApplications=yes
 RestartApplications=no
 
@@ -49,7 +49,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-; 整个 Release 目录必须一起装：ytv.exe 只是启动器，
+; 整个 Release 目录必须一起装：FreeTv.exe 只是启动器，
 ; 依赖同级的 flutter_windows.dll、三个插件 dll 与 data 目录。
 Source: "{#ReleaseDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 

@@ -27,7 +27,7 @@ class SettingsPage extends StatelessWidget {
           ),
           const _SettingRow(
             label: '官方账号',
-            value: '在官方页面内自行登录，YTV 不保存或导出凭据',
+            value: '在官方页面内自行登录，FreeTv 不保存或导出凭据',
           ),
           _SettingRow(
             label: '本地数据',
@@ -52,7 +52,7 @@ class SettingsPage extends StatelessWidget {
           ),
           const SizedBox(height: YtvSpacing.xxl),
           Text(
-            'YTV 0.1.0-dev · Phase 1A 工程与视觉骨架',
+            'FreeTv 0.1.0-dev · Phase 1A 工程与视觉骨架',
             style: textTheme.bodySmall?.copyWith(color: YtvColors.textSecondary),
           ),
         ],

@@ -53,7 +53,7 @@ class _YtvAppState extends State<YtvApp> {
     return YtvScope(
       store: widget.store,
       child: MaterialApp(
-        title: 'YTV',
+        title: 'FreeTv',
         debugShowCheckedModeBanner: false,
         theme: buildYtvTheme(),
         navigatorKey: _navigatorKey,
